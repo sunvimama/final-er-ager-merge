@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Sign Up - SOHOJOGI
+{% endblock %}
+
+{% block body %}
+  <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg border-0 rounded-3" style="max-width: 500px; width: 100%;">
+      <div class="card-body p-5">
+        <h3 class="card-title text-center mb-4">Create Your SOHOJOGI Account</h3>
+        {% if error %}
+          <div class="alert alert-danger" role="alert">
+            {{ error }}
+          </div>
+        {% endif %}
+        <form method="POST" action="/signup">
+          <!-- Full Name -->
+          <div class="mb-3">
+            <label for="name" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="name" name="username" placeholder="Enter your full name" required>
+          </div>
+          
+          <!-- Phone Number -->
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" required>
+          </div>
+          
+          <!-- Date of Birth -->
+          <div class="mb-3">
+            <label for="dob" class="form-label">Date of Birth</label>
+            <input type="date" class="form-control" id="dob" name="dob" required>
+          </div>
+          
+          <!-- NID Number -->
+          <div class="mb-3">
+            <label for="nid" class="form-label">NID Number</label>
+            <input type="text" class="form-control" id="nid" name="nid" placeholder="Enter your NID number" required>
+          </div>
+          
+          <!-- Address -->
+          <div class="mb-3">
+            <label for="address" class="form-label">Address (Street, Road No, House No, Area, City)</label>
+            <input type="text" class="form-control" id="address" name="address" placeholder="Enter your full address" required>
+          </div>
+          
+          <!-- Email Address -->
+          <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+          </div>
+          
+          <!-- Password -->
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Create a password" required>
+          </div>
+          
+          <!-- Confirm Password -->
+          <div class="mb-3">
+            <label for="confirmPassword" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+          </div>
+
+          <!-- Terms and Conditions -->
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="agreeTerms">
+              <label class="form-check-label" for="agreeTerms">I agree to the <a href="/terms" class="text-primary">Terms & Conditions</a></label>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+        </form>
+        
+        <!-- Login Link -->
+        <div class="text-center mt-3">
+          <p class="mb-0">Already have an account? <a href="/login" class="text-primary">Login here</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    body {
+      background: url('https://ddc514qh7t05d.cloudfront.net/dA/418e818129b554ab4dd35380f4c90ad7/800w/80q') no-repeat center center fixed;
+      
+      background-size: cover;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.9); /* Light background for the card */
+    }
+
+    .card-title {
+      color: #333;
+    }
+
+    .btn-primary {
+      background-color: #2575fc;
+      border-color: #2575fc;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .btn-primary:hover {
+      background-color: #6a11cb;
+      border-color: #6a11cb;
+    }
+
+    .alert-danger {
+      font-size: 14px;
+    }
+
+    .small {
+      font-size: 12px;
+    }
+  </style>
+{% endblock %}

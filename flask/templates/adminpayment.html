@@ -1,0 +1,34 @@
+<table>
+    <thead>
+        <tr>
+            <th>User Name</th>
+            <th>Worker Name</th>
+            <th>Hours</th>
+            <th>Days</th>
+            <th>Total Payment</th>
+            <th>Transaction ID</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for info in hireinfo %}
+        <tr>
+            <td>{{ info.user.username }}</td>  <!-- Access user info -->
+            <td>{{ info.worker.name }}</td>  <!-- Access worker info -->
+            <td>{{ info.hours }}</td>
+            <td>{{ info.days }}</td>
+            <td>{{ info.total_payment }}</td>
+            <td>{{ info.transaction_id }}</td>
+            <td>
+                {% if not info.hire_status %}
+                    <form action="{{ url_for('payment_done', hire_id=info.id) }}" method="POST">
+                        <button type="submit">Mark as Done</button>
+                    </form>
+                {% else %}
+                    Completed
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

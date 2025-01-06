@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('adminban') }}">Ban</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+        <a href="{{ url_for('adminpayment') }}">Payment</a> <!-- New Payment Link -->
+    </div>
+
+    <!-- Dashboard Content -->
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+        <h2>Pending Worker Approvals</h2>
+        {% if pending_workers %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Hourly Rate</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for worker in pending_workers %}
+                        <tr>
+                            <td>{{ worker.name }}</td>
+                            <td>{{ worker.email }}</td>
+                            <td>{{ worker.phone }}</td>
+                            <td>${{ worker.hourly_rate }}</td>
+                            <td>
+                                <form action="{{ url_for('approve_worker', worker_id=worker.id) }}" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-success">Approve</button>
+                                </form>
+                                <form action="{{ url_for('reject_worker', worker_id=worker.id) }}" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger">Reject</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No workers pending approval.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Hire Confirmation{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+  <h1 class="text-center mb-4">Hire Confirmation</h1>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ worker.name }}</h5>
+      <p class="card-text">
+        <strong>Email:</strong> {{ worker.email }}<br>
+        <strong>Phone:</strong> {{ worker.phone }}<br>
+        <strong>Hourly Rate:</strong> ${{ worker.hourly_rate }} per hour
+      </p>
+      <form method="POST">
+        <div class="mb-3">
+          <label for="hours" class="form-label">Hours per Day:</label>
+          <input type="number" id="hours" name="hours" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="days" class="form-label">Number of Days:</label>
+          <input type="number" id="days" name="days" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

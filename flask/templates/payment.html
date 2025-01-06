@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Payment{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+  <h1 class="text-center mb-4">Payment</h1>
+  <div class="card">
+    <div class="card-body">
+      <p><strong>Total Payment:</strong> ${{ hire_details.total_payment }}</p>
+      <p>Please send the payment to the following number: <strong>01310822942</strong></p>
+      <form method="POST">
+        <div class="mb-3">
+          <label for="transaction_id" class="form-label">Transaction ID:</label>
+          <input type="text" id="transaction_id" name="transaction_id" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-success">Submit Payment</button>
+        <a href="{{ url_for('workers') }}" class="btn btn-secondary">Cancel</a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
